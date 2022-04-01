@@ -56,9 +56,8 @@ def login_into_dash(json_target_file):
     browser.find_element_by_name("ctl00$ContentPlaceHolder1$btnLogin").click()
 
 
-def read_and_filter_excel_report():
-    df = pd.read_excel(
-        "PulteExport_2022_03_29.xlsx")
+def read_and_filter_excel_report(report):
+    df = pd.read_excel(report)
     global list_of_addresses
     list_of_addresses = df["Address"].to_list()
     print(list_of_addresses)
@@ -144,7 +143,7 @@ def logout_session():
 test_list =['137 Dimmer Garden Lane', '713 Ressler Street', '804 Emerald Mine Drive', '1017 Falling Rock Place', '159 Night Tulip Place', '2891 Dallas Valley Lane', '1208 Commack Drive', '80 Stone Bridge Crossing', '1051 Islip Place', '725 Ressler Street', '705 Ressler Street', '1136 Commack Drive', '2889 Dallas Valley Lane', '1206 Commack Drive', '2883 Dallas Valley Lane', '155 Night Tulip Place', '233 Marietta Way']
 
 def main():
-    read_and_filter_excel_report()
+    read_and_filter_excel_report("PulteExport_2022_03_29.xlsx")
     login_into_dash("./DASHLoginInfo.json")
     check_address_in_dash()
     logout_session()
