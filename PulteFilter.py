@@ -108,27 +108,6 @@ def check_address_in_dash():
 
     pd.DataFrame(addresses_for_scraping).to_excel("PulteExport_Trimmed.xlsx", header=False, index=False)
 
-def list_to_database(json_target_file, target_list):
-    with open(json_target_file) as login_data:
-        data = json.load(login_data)
-
-    mydb = mysql.connector.connect(
-        host=data["host"],
-        port=int(data["port"]),
-        user=data["user"],
-        passwd=data["passwd"],
-        db=data["db2"],
-        charset=data["charset"])
-
-    for i in range(target_list):
-        cursor = mydb.cursor()
-        SQL_select_query = "SELECT FROM `bes_eko_and_rem_full_v2` WHERE Address = %s"
-        cursor.executemany(SQL_select_query, target_list)
-        df = pd.Dataframe(cursor.fetchall())
-        print(df)
-    else:
-        print("We're done here.")
-
 
 def logout_session():
     browser.get("http://sem.myirate.com/Dashboard_Company.aspx")
@@ -147,8 +126,6 @@ def main():
     login_into_dash("./DASHLoginInfo.json")
     check_address_in_dash()
     logout_session()
-    # list_to_database("./DASHLoginInfo.json", test_list)
-
 
 main()
 browser.quit()
