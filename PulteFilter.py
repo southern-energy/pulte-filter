@@ -1,6 +1,5 @@
 import pandas as pd
 import json
-import mysql.connector
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -119,7 +118,6 @@ def logout_session():
         WebDriverWait(browser, 5).until(
             EC.element_to_be_clickable((By.LINK_TEXT, "Log Out"))).click()
 
-test_list =['137 Dimmer Garden Lane', '713 Ressler Street', '804 Emerald Mine Drive', '1017 Falling Rock Place', '159 Night Tulip Place', '2891 Dallas Valley Lane', '1208 Commack Drive', '80 Stone Bridge Crossing', '1051 Islip Place', '725 Ressler Street', '705 Ressler Street', '1136 Commack Drive', '2889 Dallas Valley Lane', '1206 Commack Drive', '2883 Dallas Valley Lane', '155 Night Tulip Place', '233 Marietta Way']
 
 def main():
     read_and_filter_excel_report("PulteExport_2022_03_29.xlsx")
